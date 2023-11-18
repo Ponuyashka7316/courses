@@ -24,8 +24,7 @@ const initialValues = {
 };
 
 //todo: get list of lects from req, create one lec related to chapter
-const Lectures = () => {
-  const [lectures, setLectures] = useState<any>();
+const Lecture = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -53,26 +52,12 @@ const Lectures = () => {
       console.log("chapterId", router.query);
       const chapters = await GetLectures(router.query.chapterId as string);
       if (chapters.status === 200) {
-        setLectures(chapters.data.data);
       }
     }
   };
 
   return (
     <div>
-      {lectures
-        ? lectures.map((lecture: any) => {
-            return (
-              <div key={lecture._id}>
-                <Link
-                  href={`http://localhost:3000/courses/${router.query.courseId}/chapter/${router.query.chapterId}/lecture/123`}
-                >
-                  {lecture.title}{" "}
-                </Link>
-              </div>
-            );
-          })
-        : null}{" "}
       <AddBoxOutlinedIcon
         sx={{ fontSize: 50, color: "#4CAF50", cursor: "pointer" }}
         onClick={handleOpenModal}
@@ -90,4 +75,4 @@ const Lectures = () => {
   );
 };
 
-export default Lectures;
+export default Lecture;

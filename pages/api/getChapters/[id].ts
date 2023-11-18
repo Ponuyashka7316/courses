@@ -16,7 +16,7 @@ export default async function handler(
   await mongoose.connect(process.env.MONGO_CONNECTION || "");
   console.log("112321341", req.query);
 
-  const chaptersList = await Chapter.find({ _id: req.query.id });
+  const chaptersList = await Chapter.find({ courseId: req.query.id });
   //const chaptersList = await Chapter.find({});
 
   res.status(200).json({ data: chaptersList, length: chaptersList.length });

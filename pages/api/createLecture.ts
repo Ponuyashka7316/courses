@@ -13,7 +13,8 @@ export default async function handler(
   await mongoose.connect(process.env.MONGO_CONNECTION || "");
 
   try {
-    const chapter = await Lecture.create({
+    console.log("first");
+    const lecture = await Lecture.create({
       title: req.body.name || "Awesome Chapter!",
       chapterId: req.body.chapterId,
       published: true,
@@ -21,10 +22,13 @@ export default async function handler(
       tags: ["featured", "announcement"],
       pic: "123",
     });
+    console.log("sec");
 
-    const course = await Course.findOne({ _id: req.body.courseId });
-    course.chapters.push(chapter);
-    course.save();
+    const chapter = await Chapter.findOne({ _id: req.body.chapterId });
+    console.log("231313", chapter);
+
+    chapter.lectures.push(lecture);
+    chapter.save();
 
     //course.save();
     res.status(200).json({});
