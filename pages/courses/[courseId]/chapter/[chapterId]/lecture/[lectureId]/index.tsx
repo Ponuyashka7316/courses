@@ -31,6 +31,8 @@ const Lecture = () => {
   const handleClose = () => setIsOpen(false);
   const handleOpenModal = () => setIsOpen(true);
 
+  console.log("aaa", process.env, process.env.NEXT_PUBLIC_GOOGLE_SECRET);
+
   useEffect(() => {
     const response = getLecturesReq();
   }, [router.query]);

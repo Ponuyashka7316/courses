@@ -13,7 +13,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  await mongoose.connect(process.env.MONGO_CONNECTION || "");
+  await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_CONNECTION || "");
   // const course = Course.create({
   //   title: "Awesome Course!",
   //   published: true,

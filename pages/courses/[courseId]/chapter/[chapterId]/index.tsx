@@ -65,7 +65,7 @@ const Lectures = () => {
             return (
               <div key={lecture._id}>
                 <Link
-                  href={`http://localhost:3000/courses/${router.query.courseId}/chapter/${router.query.chapterId}/lecture/123`}
+                  href={`http://localhost:3000/courses/${router.query.courseId}/chapter/${router.query.chapterId}/lecture/${lecture._id}`}
                 >
                   {lecture.title}{" "}
                 </Link>

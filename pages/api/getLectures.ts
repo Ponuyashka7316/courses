@@ -13,7 +13,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  await mongoose.connect(process.env.MONGO_CONNECTION || "");
+  await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_CONNECTION || "");
   console.log("112321341", req.query);
   const list = await Lecture.find({ chapterId: req.query.id });
   res.status(200).json({ data: list, length: list.length });
