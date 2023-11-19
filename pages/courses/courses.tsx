@@ -2,11 +2,11 @@ import CustomCard from "@/components/Card/Cards";
 import { CreateCourse, GetCourses } from "@/services/coursesService";
 import { useEffect, useState } from "react";
 import classes from "./courses.module.scss";
-import { ErrorMessage, Field, Formik, useFormik } from "formik";
+import { ErrorMessage, Formik, useFormik } from "formik";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import * as yup from "yup";
-import Form from "@/utils/form";
+import Form, { Field, Field } from "@/utils/form";
 
 const validationSchema = yup.object({
   name: yup
@@ -34,6 +34,11 @@ export const style = {
   boxShadow: 24,
   p: 4,
 };
+
+const fields = [
+  { label: "name", value: "name", type: "text" },
+  { label: "description", value: "description", type: "text" },
+] as Field[];
 
 const Courses = () => {
   const [courses, setCourses] = useState<any[]>();
@@ -67,6 +72,7 @@ const Courses = () => {
       <Modal open={isOpen} onClose={handleClose}>
         <Box sx={style}>
           <Form
+            fields={fields}
             onSubmit={onSumbit}
             initialValues={initialValues}
             validationSchema={validationSchema}

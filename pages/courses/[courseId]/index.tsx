@@ -21,6 +21,11 @@ const validationSchema = yup.object({
     .required("description is required"),
 });
 
+const fields = [
+  { label: "name", value: "name", type: "text" },
+  { label: "description", value: "description", type: "text" },
+] as Field[];
+
 const initialValues = {
   name: "foobar@example.com",
   description: "foobar",
@@ -83,6 +88,7 @@ const Chapter = () => {
       <Modal open={isOpen} onClose={handleClose}>
         <Box sx={style}>
           <Form
+            fields={fields}
             onSubmit={onSumbit}
             initialValues={initialValues}
             validationSchema={validationSchema}
