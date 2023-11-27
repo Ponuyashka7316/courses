@@ -1,6 +1,6 @@
 import { style } from "@/pages/courses/courses";
 import GetLectures, { CreateLecture } from "@/services/lecturesService";
-import Form from "@/utils/form";
+import Form, { Field } from "@/utils/form";
 import { Box, Modal } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -17,6 +17,11 @@ const validationSchema = yup.object({
     .string("Enter your description")
     .required("description is required"),
 });
+
+const fields = [
+  { label: "name", value: "name", type: "text" },
+  { label: "description", value: "description", type: "text" },
+] as Field[];
 
 const initialValues = {
   name: "foobar@example.com",
@@ -67,6 +72,7 @@ const Lecture = () => {
       <Modal open={isOpen} onClose={handleClose}>
         <Box sx={style}>
           <Form
+            fields={fields}
             onSubmit={onSumbit}
             initialValues={initialValues}
             validationSchema={validationSchema}

@@ -1,6 +1,6 @@
 import { style } from "@/pages/courses/courses";
 import GetLectures, { CreateLecture } from "@/services/lecturesService";
-import Form from "@/utils/form";
+import Form, { Field } from "@/utils/form";
 import { Box, Modal } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -22,6 +22,11 @@ const initialValues = {
   name: "foobar@example.com",
   description: "foobar",
 };
+
+const fields = [
+  { label: "name", value: "name", type: "text" },
+  { label: "description", value: "description", type: "text" },
+] as Field[];
 
 //todo: get list of lects from req, create one lec related to chapter
 const Lectures = () => {
@@ -80,6 +85,7 @@ const Lectures = () => {
       <Modal open={isOpen} onClose={handleClose}>
         <Box sx={style}>
           <Form
+            fields={fields}
             onSubmit={onSumbit}
             initialValues={initialValues}
             validationSchema={validationSchema}
